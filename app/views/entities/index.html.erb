@@ -10,7 +10,11 @@
           <h3><%= entity.name %></h3>
           <p><%= entity.description%></p>
           <%= link_to 'Show', entity_path(entity) %>
-          <%= link_to 'Send Resume', entity_path(entity) %>
+          <%= form_tag entities_entry_path, method: :post do %>
+            <%= hidden_field_tag :resumeid, current_user.resumeid %>
+            <%= hidden_field_tag :entityid, entity.id %>
+            <%= submit_tag("Send Resume", :class => "submit") %>
+          <% end %>
         </div>
       </div>
     </div>

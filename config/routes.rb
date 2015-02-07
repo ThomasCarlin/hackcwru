@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :users
+  resources :users
   resources :entities
 
+  get 'entities/parse'
+  post 'entities/parse'
+  get 'entities/entry'
+  post 'entities/entry'
   get 'welcome/index'
   get 'resumes/parse'
   post 'resumes/parse'

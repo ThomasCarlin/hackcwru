@@ -1,4 +1,4 @@
- <div class="col-md-8 col-md-offset-2">
+ <div class="container">
   <h1>Listing Resumes</h1><%= link_to 'New resume', new_resume_path %>
 
 <table class="table table-striped">
@@ -8,6 +8,7 @@
     <th>School </th>
     <th>Degree</th>
     <th>MGPA/GPA</th>
+    <th colspan=3>Options</th>
   </tr>
  
   <% @resumes.each do |resume| %>
@@ -26,6 +27,8 @@
       <td><%= link_to 'Destroy', resume_path(resume),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
+                  <td><%= link_to 'Make Current', resumes_path(current: resume.id) %></td>
+
                   </tr>
   <% end %>
 </table>

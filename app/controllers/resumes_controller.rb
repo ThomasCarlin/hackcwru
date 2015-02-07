@@ -9,6 +9,12 @@ class ResumesController < ApplicationController
 				@resume.title = @parsearray[i+1]
 				@resume.date = @parsearray[i+2]
 				@resume.save
+				if params[:entity]!=nil && @resume !=nil
+					@entry = EntityResume.new
+					@entry.resumeid=@resume.id
+					@entry.entityid=params[:entity]
+					@entry.save
+				end
 			elsif @parsearray[i] == "INF"
 				@information = Information.new
 				@information.firstname = @parsearray[i+1]
@@ -55,11 +61,19 @@ class ResumesController < ApplicationController
 				
 			i+=1
 		end
-
-		redirect_to resumes_path
+		if params[:entity]!=nil
+			redirect_to entity_path(params[:entity])
+		else
+			redirect_to resumes_path
+		end
 	end
 	def index
-		@resumes = Resume.all 
+		@resumes = Resume.where(:userid => current_user.id)
+		if params[:current] != nil
+			@user = User.find(current_user.id)
+			@user.resumeid= params[:current]
+			@user.save
+		end
 		@resumeliststring=""
 		@resumes.each do |x|
 			@resumestring = ["*RES",x.title,x.date].join("*")
@@ -115,6 +129,7 @@ class ResumesController < ApplicationController
 
 	def create
 		@resume = Resume.new(resume_params)
+		@resume.userid = current_user.id
 		@resume.save
 		@information = Information.new
 		@information.resume_id= @resume.id
