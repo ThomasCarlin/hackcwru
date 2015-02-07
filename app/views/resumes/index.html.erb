@@ -1,29 +1,41 @@
-<h1>Listing Resumes</h1>
- 
-<table>
+ <div class="col-md-8 col-md-offset-2">
+  <h1>Listing Resumes</h1><%= link_to 'New resume', new_resume_path %>
+
+<table class="table table-striped">
   <tr>
-    <th>Title</th>
-    <th>Date</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>School </th>
+    <th>Degree</th>
+    <th>MGPA/GPA</th>
   </tr>
  
   <% @resumes.each do |resume| %>
     <tr>
-      <td><%= resume.title %></td>
-      <td><%= resume.date %></td>
+      <% resume.information.each do |info| %>
+      <td><%=info.firstname%></td>
+      <td><%=info.lastname%></td>
+      <% end %>
+      <% resume.education.each do |info| %>
+      <td><%=info.school %></td>
+      <td><%=info.degreetype %> <%=info.degree%></td>
+      <td><%=info.mgpa %>/<%=info.gpa%></td>
+      <% end %>
       <td><%= link_to 'Show', resume_path(resume) %></td>
       <td><%= link_to 'Edit', edit_resume_path(resume) %></td>
       <td><%= link_to 'Destroy', resume_path(resume),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
-      <td><%= button_to "Parse", { :controller => "resumes", :action => "parse"} %>
-      </td>
                   </tr>
   <% end %>
 </table>
-<%= link_to 'New resume', new_resume_path %>
+<br>
+<div class="well">
 <%= @resumeliststring %>
-
+<br>
+</div>
 <%= form_tag resumes_parse_path, method: :get do %>
   <%= text_area_tag(:answer) %>
   <%= submit_tag("Continue", :class => "submit") %>
 <% end %>
+</div>
