@@ -1,0 +1,88 @@
+<h1> New Resume </h1>
+
+<%= form_for :resume, url: resumes_path do |f| %>
+  <% if @resume.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@resume.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @resume.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+ 
+  <p>
+    <%= f.label :date %><br>
+    <%= f.text_field :date %>
+  </p>
+  <h4>Contact Information</h4>
+  <p> First Name
+  <%= text_field_tag(:informationfname) %>
+  <br> Middle Name
+    <%= text_field_tag(:INFmiddle) %>
+  <br>Last Name
+    <%= text_field_tag(:INFlastname) %>
+  <br> Phone
+    <%= text_field_tag(:INFphone) %>
+  <br> Street
+    <%= text_field_tag(:INFstreet) %>
+  <br> City
+    <%= text_field_tag(:INFcity) %>
+  <br> State
+    <%= text_field_tag(:INFstate) %>
+  <br> Zip Code
+    <%= text_field_tag(:INFzip) %>
+  </p>
+  <h2>Objective</h2>
+  <p>Position
+    <%= text_field_tag(:OBJposition) %>
+  <br>Time Period of Desired Position
+    <%= text_field_tag(:OBJdate) %>
+<br> Full Time(Y)/Parttime or Internship(N)
+    <%= check_box_tag(:OBJfull) %>
+  </p>
+
+  <h2> Education </h2>
+    <p>School
+      <%= text_field_tag(:EDUschool) %>
+      <br>School Code
+      <%= text_field_tag(:EDUcode) %>
+      <br> City
+      <%= text_field_tag(:EDUcity) %>
+      <br>State
+      <%= text_field_tag(:EDUstate) %>
+      <br>Degree Type
+      <%= text_field_tag(:EDUtype) %>
+      <br>Degree
+      <%= text_field_tag(:EDUdegree) %>
+      <br>Grad Date
+      <%= text_field_tag(:EDUdate) %>
+      <br>Major GPA
+      <%= text_field_tag(:EDUmgpa) %>
+      <br>GPA
+      <%= text_field_tag(:EDUgpa) %>
+    </p>
+
+  <h2> Work Experience </h2>
+    <p> Company
+      <%= text_field_tag(:WRKcompany) %>
+      <br> Position 
+      <%= text_field_tag(:WRKposition) %>
+      <br> Start Date
+      <%= text_field_tag(:WRKdatestart) %>
+      <br> End Date
+      <%= text_field_tag(:WRKdateend) %>
+    </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

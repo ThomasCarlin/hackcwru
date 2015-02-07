@@ -1,0 +1,61 @@
+<p>
+  <strong>Title:</strong>
+  <%= @resume.title %>
+</p>
+ 
+<p>
+  <strong>Date:</strong>
+  <%= @resume.date %>
+</p>
+
+<% @resume.information.each do |information| %>
+<p>
+	<h2><%= information.firstname %> <%=information.middlename%> <%=information.lastname%> 
+	<br>Contact Information
+	<br>Email: <%= information.email%> Phone: <%= information.phone %> 
+	<br><%= information.street %> 
+	<br><%= information.city %> <%=information.state%> <%=information.zipcode%></h2>
+</p>
+<% end %>
+
+<% @resume.objective.each do |objective| %>
+<p>
+	<h3>Objective: <%= objective.position %> When? <%=objective.date %> Fulltime? 
+		<% if objective.fulltime == true %>
+			Yes
+		<% else %>
+			No
+		<%end%>
+	</h3>
+</p>
+<%end%>
+
+<% @resume.education.each do |education| %>
+	<p>
+		<h3>Education 
+		<br>School: <%= education.school + " "+ education.schoolcode+" "+education.city + " " + education.state  %> 
+		<br>Degree: <%= education.degreetype + " " + education.degree + " " + education.graddate %>
+		<br>Major GPA: <%= education.mgpa %> GPA: <%=education.gpa%>
+		</h3>
+	</p>
+<% end %>
+
+<% @resume.work.each do |work| %>
+	<p>
+		<h3>Work Experience
+		<br>Company: <%= work.company %> Position: <%= work.position %> Start Date: <%= work.datestart %> End Date <%=work.dateend%>
+		</h3>
+	</p>
+<% end %>
+
+<h3>Standard Resume Format</h3>
+<p>
+	RES*<%=@resume.title%>*<%=@resume.created_at%>~<br>
+	<%= @infostring %><br>
+	<%= @objectivestring %><br>
+	<%= @educationstring %><br>
+	<%= @workstring %>
+</p>
+
+<%= link_to 'Back', resumes_path %> |
+<%= link_to 'Edit', edit_resume_path(@resume) %>
