@@ -1,0 +1,22 @@
+ <div class="col-md-8 col-md-offset-2">
+  <h1>Listing Entities</h1><%= link_to 'New Entity', new_entity_path %>
+
+
+<div class="col-md-12"> 
+  <% @entities.each do |entity| %>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <div class="caption">
+          <h3><%= entity.name %></h3>
+          <p><%= entity.description%></p>
+          <%= link_to 'Show', entity_path(entity) %>
+          <%= link_to 'Send Resume', entity_path(entity) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<br>
+<br>
+</div>
+

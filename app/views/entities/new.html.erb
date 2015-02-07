@@ -1,0 +1,47 @@
+<h1> New Entity</h1>
+
+<%= form_for :entity, url: entities_path do |f| %>
+  <% if @entity.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@entity.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @entity.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+ 
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </p>
+
+  <p>
+    <%= f.label :degree %><br>
+    <%= f.text_field :degree %>
+  </p>
+  <p>
+    <%= f.label :major %><br>
+    <%= f.text_field :major %>
+  </p>
+  <p>
+    <%= f.label :position %><br>
+    <%= f.text_field :position %>
+  </p>
+  <p>
+    <%= f.label :website %><br>
+    <%= f.text_field :website %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

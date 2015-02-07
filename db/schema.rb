@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150207070407) do
+ActiveRecord::Schema.define(version: 20150207154631) do
 
   create_table "educations", force: true do |t|
     t.string   "school"
@@ -29,6 +29,25 @@ ActiveRecord::Schema.define(version: 20150207070407) do
   end
 
   add_index "educations", ["resume_id"], name: "index_educations_on_resume_id"
+
+  create_table "entities", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "degree"
+    t.string   "major"
+    t.string   "position"
+    t.string   "website"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "pic"
+  end
+
+  create_table "entity_resumes", force: true do |t|
+    t.integer  "resumeid"
+    t.integer  "entityid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "information", force: true do |t|
     t.string   "firstname"

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :entities
+
   get 'welcome/index'
   get 'resumes/parse'
   post 'resumes/parse'
