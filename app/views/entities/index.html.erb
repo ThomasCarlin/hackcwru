@@ -6,7 +6,7 @@
   <% @entities.each do |entity| %>
     <div class="col-sm-6 col-md-4">
       <div class="thumbnail">
-      <%= image_tag("hyland.jpg") %>
+      <%= image_tag(entity.pic) %>
         <div class="caption">
           <h3><%= entity.name %></h3>
           <p><%= entity.description%></p>

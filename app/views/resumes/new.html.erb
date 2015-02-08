@@ -44,11 +44,11 @@
   <br> Street
     <%= text_field_tag(:INFstreet) %>
   <br> City
-    <%= text_field_tag(:INFcity) %>
+    <%= text_field_tag(:INFcity,@city) %>
   <br> State
-    <%= text_field_tag(:INFstate) %>
+    <%= text_field_tag(:INFstate,@state) %>
   <br> Zip Code
-    <%= text_field_tag(:INFzip) %>
+    <%= text_field_tag(:INFzip,@zip) %>
   </p>
 </div>
 </div>
@@ -91,13 +91,13 @@
       <br>School Code
       <%= text_field_tag(:EDUcode) %>
       <br> City
-      <%= text_field_tag(:EDUcity) %>
+      <%= text_field_tag(:EDUcity,@city) %>
       <br>State
-      <%= text_field_tag(:EDUstate) %>
+      <%= text_field_tag(:EDUstate,@state) %>
       <br>Degree Type
-      <%= text_field_tag(:EDUtype) %>
+      <%= text_field_tag(:EDUtype,@degreetype) %>
       <br>Degree
-      <%= text_field_tag(:EDUdegree) %>
+      <%= text_field_tag(:EDUdegree,@degree) %>
       <br>Grad Date
       <%= text_field_tag(:EDUdate) %>
       <br>Major GPA

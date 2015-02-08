@@ -139,6 +139,21 @@ class ResumesController < ApplicationController
 		if params[:lastname] != nil
 			@lastname = params[:lastname]
 		end
+		if params[:degreetype] != nil
+			@degreetype = params[:degreetype]
+		end
+		if params[:city] != nil
+			@city = params[:city]
+		end
+		if params[:degree] != nil
+			@degree= params[:degree]
+		end
+		if params[:state] != nil
+			@state = params[:state]
+		end
+		if params[:zip] != nil
+			@zip = params[:zip]
+		end
 
 	end
 
