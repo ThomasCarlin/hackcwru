@@ -68,12 +68,12 @@ class ResumesController < ApplicationController
 		end
 	end
 	def index
-		@resumes = Resume.where(:userid => current_user.id)
 		if params[:current] != nil
 			@user = User.find(current_user.id)
 			@user.resumeid= params[:current]
 			@user.save
 		end
+		@resumes = Resume.where(:userid => current_user.id)
 		@resumeliststring=""
 		@resumes.each do |x|
 			@resumestring = ["*RES",x.title,x.date].join("*")
@@ -121,6 +121,25 @@ class ResumesController < ApplicationController
 
 	def new
 		@resume = Resume.new
+		@email = ""
+		@phone =""
+		@gpa =""
+		if params[:email] != nil
+			@email = params[:email]
+		end
+		if params[:phone] != nil
+			@phone = params[:phone]
+		end
+		if params[:gpa] != nil
+			@gpa = params[:gpa]
+		end
+		if params[:firstname] != nil
+			@firstname = params[:firstname]
+		end
+		if params[:lastname] != nil
+			@lastname = params[:lastname]
+		end
+
 	end
 
 	def edit
@@ -141,6 +160,7 @@ class ResumesController < ApplicationController
 		@information.city = params[:INFcity]
 		@information.state = params[:INFstate]
 		@information.zipcode = params[:INFzip]
+		@information.email = params[:INFemail]
 		@information.save
 
 		@objective = Objective.new

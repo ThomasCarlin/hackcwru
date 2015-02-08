@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :users
   resources :entities
 
+  get 'welcome/upload'
+  post 'welcome/upload'
+
   get 'entities/parse'
   post 'entities/parse'
   get 'entities/entry'

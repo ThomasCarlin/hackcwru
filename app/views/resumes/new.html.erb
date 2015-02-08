@@ -1,6 +1,12 @@
-<h1> New Resume </h1>
+<div class="container">
+  <h1> New Resume </h1>
 
+<div class="row">
 <%= form_for :resume, url: resumes_path do |f| %>
+<div class="col-md-6">
+  <div class="panel panel-default">
+  <div class="panel-heading">New Resume</div>
+  <div class="panel-body">
   <% if @resume.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -18,20 +24,23 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </p>
- 
-  <p>
-    <%= f.label :date %><br>
-    <%= f.text_field :date %>
-  </p>
-  <h4>Contact Information</h4>
+ </div>
+</div>
+</div>
+<div class="col-md-6">
+  <div class="panel panel-default">
+  <div class="panel-heading">Contact Information</div>
+  <div class="panel-body">
   <p> First Name
-  <%= text_field_tag(:informationfname) %>
+  <%= text_field_tag(:informationfname, @firstname) %>
   <br> Middle Name
     <%= text_field_tag(:INFmiddle) %>
   <br>Last Name
-    <%= text_field_tag(:INFlastname) %>
+    <%= text_field_tag(:INFlastname, @lastname) %>
   <br> Phone
-    <%= text_field_tag(:INFphone) %>
+    <%= text_field_tag(:INFphone,@phone) %>
+  <br> Email
+    <%= text_field_tag(:INFemail,@email) %>
   <br> Street
     <%= text_field_tag(:INFstreet) %>
   <br> City
@@ -41,7 +50,15 @@
   <br> Zip Code
     <%= text_field_tag(:INFzip) %>
   </p>
-  <h2>Objective</h2>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">
+  <div class="panel panel-default">
+  <div class="panel-heading">Objective</div>
+  <div class="panel-body">
   <p>Position
     <%= text_field_tag(:OBJposition) %>
   <br>Time Period of Desired Position
@@ -49,8 +66,26 @@
 <br> Full Time(Y)/Parttime or Internship(N)
     <%= check_box_tag(:OBJfull) %>
   </p>
+</div>
+  <div class="panel-heading">Work Experience</div>
+  <div class="panel-body">
+    <p> Company
+      <%= text_field_tag(:WRKcompany) %>
+      <br> Position 
+      <%= text_field_tag(:WRKposition) %>
+      <br> Start Date
+      <%= text_field_tag(:WRKdatestart) %>
+      <br> End Date
+      <%= text_field_tag(:WRKdateend) %>
+    </p>
+    </div>
+</div>
+</div>
 
-  <h2> Education </h2>
+<div class="col-md-6">
+  <div class="panel panel-default">
+  <div class="panel-heading">Education</div>
+  <div class="panel-body">
     <p>School
       <%= text_field_tag(:EDUschool) %>
       <br>School Code
@@ -66,23 +101,17 @@
       <br>Grad Date
       <%= text_field_tag(:EDUdate) %>
       <br>Major GPA
-      <%= text_field_tag(:EDUmgpa) %>
+      <%= text_field_tag(:EDUmgpa,@gpa) %>
       <br>GPA
-      <%= text_field_tag(:EDUgpa) %>
+      <%= text_field_tag(:EDUgpa,@gpa) %>
     </p>
-
-  <h2> Work Experience </h2>
-    <p> Company
-      <%= text_field_tag(:WRKcompany) %>
-      <br> Position 
-      <%= text_field_tag(:WRKposition) %>
-      <br> Start Date
-      <%= text_field_tag(:WRKdatestart) %>
-      <br> End Date
-      <%= text_field_tag(:WRKdateend) %>
-    </p>
+  </div>
+</div>
+</div>
+</div>
 
   <p>
     <%= f.submit %>
   </p>
+</div>
 <% end %>

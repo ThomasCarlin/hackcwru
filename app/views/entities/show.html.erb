@@ -51,6 +51,9 @@
       <td><%=info.degreetype %> <%=info.degree%></td>
       <td><%=info.mgpa %>/<%=info.gpa%></td>
       <% end %>
+      <% resume.objective.each do |obj| %>
+      	<td><%=obj.position%></td>
+      	<%end%>
       <td><%= link_to 'Show', resume_path(resume) %></td>
   <% end %>
 </table>
@@ -60,9 +63,9 @@
 <br>
 </div>
 <%= form_tag resumes_parse_path, method: :get do %>
-  <%= text_area_tag(:answer) %>
-  <%= hidden_field_tag :entity, @entity.id %>
-  <%= submit_tag("Continue", :class => "submit") %>
+  <%= text_area_tag :answer,nil,size:"120x20" %>
+  <%= hidden_field_tag :entity, @entity.id %><br>
+  <%= submit_tag("Generate Resume(s)", :class => "submit") %>
 <% end %>
 
 

@@ -1,3 +1,4 @@
+<div class="container">
 <p>
   <strong>Title:</strong>
   <%= @resume.title %>
@@ -5,57 +6,76 @@
  
 <p>
   <strong>Date:</strong>
-  <%= @resume.date %>
+  <%= @resume.created_at %>
 </p>
-
+<br>
+<div class="row">
 <% @resume.information.each do |information| %>
-<p>
-	<h2><%= information.firstname %> <%=information.middlename%> <%=information.lastname%> 
+<div class="col-md-6">
+	<div class="panel panel-default">
+	<div class="panel-heading">Contact Information</div>
+	<div class="panel-body">
+	<%= information.firstname %> <%=information.middlename%> <%=information.lastname%> 
 	<br>Contact Information
 	<br>Email: <%= information.email%> Phone: <%= information.phone %> 
 	<br><%= information.street %> 
-	<br><%= information.city %> <%=information.state%> <%=information.zipcode%></h2>
-</p>
+	<br><%= information.city %> <%=information.state%> <%=information.zipcode%>
+</div>
+</div>
+</div>
 <% end %>
 
 <% @resume.objective.each do |objective| %>
-<p>
-	<h3>Objective: <%= objective.position %> When? <%=objective.date %> Fulltime? 
+<div class="col-md-6">
+	<div class="panel panel-default">
+		<div class="panel-heading">Objective</div>
+		<div class="panel-body">
+		<%= objective.position %> Date: <%=objective.date %> Fulltime:
 		<% if objective.fulltime == true %>
 			Yes
 		<% else %>
 			No
 		<%end%>
-	</h3>
-</p>
+	</div>
+	</div>
+</div>
 <%end%>
-
+</div>
+<div class="row">
 <% @resume.education.each do |education| %>
-	<p>
-		<h3>Education 
-		<br>School: <%= education.school + " "+ education.schoolcode+" "+education.city + " " + education.state  %> 
+<div class="col-md-6">
+	<div class="panel panel-default">
+		<div class="panel-heading">Education</div>
+		<div class="panel-body">
+		School: <%= education.school + " "+ education.schoolcode+" "+education.city + " " + education.state  %> 
 		<br>Degree: <%= education.degreetype + " " + education.degree + " " + education.graddate %>
 		<br>Major GPA: <%= education.mgpa %> GPA: <%=education.gpa%>
-		</h3>
-	</p>
+	</div>
+</div>
+</div>
 <% end %>
 
 <% @resume.work.each do |work| %>
-	<p>
-		<h3>Work Experience
-		<br>Company: <%= work.company %> Position: <%= work.position %> Start Date: <%= work.datestart %> End Date <%=work.dateend%>
-		</h3>
-	</p>
+<div class="col-md-6">
+	<div class="panel panel-default">
+		<div class="panel-heading">Work Experience</div>
+		<div class="panel-body">
+		Company: <%= work.company %> Position: <%= work.position %> Start Date: <%= work.datestart %> End Date <%=work.dateend%>
+	</div>
+</div>
 <% end %>
-
+</div>
+</div>
+<div class="row">
 <h3>Standard Resume Format</h3>
-<p>
+<div class="well">
 	RES*<%=@resume.title%>*<%=@resume.created_at%>~<br>
 	<%= @infostring %><br>
 	<%= @objectivestring %><br>
 	<%= @educationstring %><br>
 	<%= @workstring %>
-</p>
+</div>
 
 <%= link_to 'Back', resumes_path %> |
 <%= link_to 'Edit', edit_resume_path(@resume) %>
+</div>

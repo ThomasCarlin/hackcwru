@@ -8,11 +8,15 @@
     <th>School </th>
     <th>Degree</th>
     <th>MGPA/GPA</th>
-    <th colspan=3>Options</th>
+    <th colspan=4>Options</th>
   </tr>
  
   <% @resumes.each do |resume| %>
-    <tr>
+    <% if resume.id == current_user.resumeid %>
+      <tr class="success">
+    <% else %>
+      <tr>
+    <% end %>
       <% resume.information.each do |info| %>
       <td><%=info.firstname%></td>
       <td><%=info.lastname%></td>
@@ -38,7 +42,7 @@
 <br>
 </div>
 <%= form_tag resumes_parse_path, method: :get do %>
-  <%= text_area_tag(:answer) %>
-  <%= submit_tag("Continue", :class => "submit") %>
+  <%= text_area_tag :answer, nil, size: "120x20"%><br>
+  <%= submit_tag("Generate Resume(s)", :class => "submit") %>
 <% end %>
 </div>

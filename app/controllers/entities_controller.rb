@@ -1,5 +1,4 @@
 class EntitiesController < ApplicationController
-
 	def parse
 		@parsethis = params[:answer]
 		@parsearray = @parsethis.split("*")
@@ -61,12 +60,16 @@ class EntitiesController < ApplicationController
 	end
 	def entry
 		@resumeid = params[:resumeid]
+		@resume = Resume.find(@resumeid)
+		@entity = Entity.find(params[:entityid])
 		@submission = EntityResume.new
 		resumeint=params[:resumeid]
 		entityint=params[:entityid]
 		@submission.resumeid = resumeint
 		@submission.entityid = entityint
 		@submission.save
+
+		redirect_to entity_path(@entity)
 
 	end
 	def index
