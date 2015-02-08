@@ -159,6 +159,18 @@ class ResumesController < ApplicationController
 
 	def edit
 		@resume = Resume.find(params[:id])
+		@resume.objective.each do |x|
+			@objective=x
+		end
+		@resume.information.each do|x|
+			@information =x
+		end
+		@resume.work.each do |x|
+			@work=x
+		end
+		@resume.education.each do |x|
+			@education=x
+		end
 	end
 
 	def create
@@ -210,6 +222,7 @@ class ResumesController < ApplicationController
 			redirect_to @resume
 
 	end
+
 
 	def destroy
 		@resume = Resume.find(params[:id])

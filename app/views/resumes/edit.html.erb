@@ -1,12 +1,17 @@
-<h1>Editing resume</h1>
- 
-<%= form_for :resume, url: resume_path(@resume), method: :patch do |f| %>
- 
+<div class="container">
+  <h1> Edit Resume </h1>
+
+<div class="row">
+<%= form_for :resume, url: resumes_path do |f| %>
+<div class="col-md-6">
+  <div class="panel panel-default">
+  <div class="panel-heading">New Resume</div>
+  <div class="panel-body">
   <% if @resume.errors.any? %>
     <div id="error_explanation">
       <h2>
         <%= pluralize(@resume.errors.count, "error") %> prohibited
-        this resume from being saved:
+        this article from being saved:
       </h2>
       <ul>
         <% @resume.errors.full_messages.each do |msg| %>
@@ -15,21 +20,98 @@
       </ul>
     </div>
   <% end %>
- 
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </p>
- 
-  <p>
-    <%= f.label :date %><br>
-    <%= f.text_field :date %>
+ </div>
+</div>
+</div>
+<div class="col-md-6">
+  <div class="panel panel-default">
+  <div class="panel-heading">Contact Information</div>
+  <div class="panel-body">
+  <p> First Name
+  <%= text_field_tag(:informationfname, @information.firstname) %>
+  <br> Middle Name
+    <%= text_field_tag(:INFmiddle, @information.middlename) %>
+  <br>Last Name
+    <%= text_field_tag(:INFlastname, @information.lastname) %>
+  <br> Phone
+    <%= text_field_tag(:INFphone,@information.phone) %>
+  <br> Email
+    <%= text_field_tag(:INFemail,@information.email) %>
+  <br> Street
+    <%= text_field_tag(:INFstreet,@information.street) %>
+  <br> City
+    <%= text_field_tag(:INFcity,@information.city) %>
+  <br> State
+    <%= text_field_tag(:INFstate,@information.state) %>
+  <br> Zip Code
+    <%= text_field_tag(:INFzip,@information.zipcode) %>
   </p>
- 
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">
+  <div class="panel panel-default">
+  <div class="panel-heading">Objective</div>
+  <div class="panel-body">
+  <p>Position
+    <%= text_field_tag(:OBJposition,@objective.position)  %>
+  <br>Time Period of Desired Position
+    <%= text_field_tag(:OBJdate,@objective.date) %>
+<br> Full Time(Y)/Parttime or Internship(N)
+    <%= check_box_tag(:OBJfull,@objective.fulltime) %>
+  </p>
+</div>
+  <div class="panel-heading">Work Experience</div>
+  <div class="panel-body">
+    <p> Company
+      <%= text_field_tag(:WRKcompany,@work.company) %>
+      <br> Position 
+      <%= text_field_tag(:WRKposition,@work.position) %>
+      <br> Start Date
+      <%= text_field_tag(:WRKdatestart,@work.datestart) %>
+      <br> End Date
+      <%= text_field_tag(:WRKdateend,@work.dateend) %>
+    </p>
+    </div>
+</div>
+</div>
+
+<div class="col-md-6">
+  <div class="panel panel-default">
+  <div class="panel-heading">Education</div>
+  <div class="panel-body">
+    <p>School
+      <%= text_field_tag(:EDUschool,@education.school) %>
+      <br>School Code
+      <%= text_field_tag(:EDUcode, @education.schoolcode) %>
+      <br> City
+      <%= text_field_tag(:EDUcity,@education.city) %>
+      <br>State
+      <%= text_field_tag(:EDUstate,@education.state) %>
+      <br>Degree Type
+      <%= text_field_tag(:EDUtype,@education.degreetype) %>
+      <br>Degree
+      <%= text_field_tag(:EDUdegree,@education.degree) %>
+      <br>Grad Date
+      <%= text_field_tag(:EDUdate, @education.graddate) %>
+      <br>Major GPA
+      <%= text_field_tag(:EDUmgpa,@education.gpa) %>
+      <br>GPA
+      <%= text_field_tag(:EDUgpa,@education.gpa) %>
+    </p>
+  </div>
+</div>
+</div>
+</div>
+
   <p>
     <%= f.submit %>
   </p>
- 
+</div>
 <% end %>
- 
-<%= link_to 'Back', resumes_path %>
